@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Questions</h3>
+
+<div class="">
+    <table class="table display" id="QustionsList">
+        <thead>
+            <tr>
+                <th>Question Id</th>
+                <th>Title</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        debugger;
+        var url = base_url;
+        var table = $("#QustionsList").DataTable({
+            "filter": true,
+            "order": [1, "desc"],
+            "pagingType": "full_numbers",
+            ajax: {
+                url: url + "/StackOverFlow/QuestionList",
+                type: "GET"
+            },
+            columns: [
+                {
+                    data: "QuestionId",
+                    name: "QuestionId",
+                    render: function (data) {
+                        return "<a  href='" + url + "/StackOverFlow/QuestionDetails/?questionId=" + data + "'>Details</a>"
+                    }
+                },
+                { data: "Title", name: "Title" }
+            ]
+        });
+
+        console.log(table);
+    });
+</script>
+

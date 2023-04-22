@@ -1,13 +1,23 @@
-﻿<!DOCTYPE html>
+﻿@using System.Configuration;
+<!DOCTYPE html>
 <html>
 <head>
+    @{
+        Uri base_url = new Uri(Request.Url, Url.Content("~"));
+        string applicationName = ConfigurationManager.AppSettings.Get("ApplicationName");
+    }
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js" type="text/javascript"></script>
+    <script src="~/Scripts/app/Books.js"></script>
+    <link href="~/Content/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/app/Styles.css" rel="stylesheet" type="text/css" />
+    <title>@applicationName</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <input type="hidden" id="base_url" value="@base_url" />
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -16,13 +26,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink(applicationName, "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Books", "Index", "Books")</li>
+                    <li>@Html.ActionLink("Stack Over Flow Questions", "Index", "StackOverFlow")</li>
+                    <li>@Html.ActionLink("Books By Categories", "BooksWithTypes", "Books")</li>
                 </ul>
             </div>
         </div>
@@ -31,11 +41,19 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - @applicationName</p>
         </footer>
     </div>
 
+    <script>
+        base_url = $("#base_url").val();
+        if (base_url.substring(base_url.length - 1) == '/') {
+            base_url = base_url.substring(0, base_url.length - 1);
+        }
+    </script>
+
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/datatables")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

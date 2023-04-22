@@ -18,6 +18,8 @@ namespace AltkamulAlteqani.Entities.Models
 
         public string Author { get; set; }
 
+        public string PublishDate { get; set; }
+
         public int BookTypeId { get; set; }
 
         public int AuthorId { get; set; }

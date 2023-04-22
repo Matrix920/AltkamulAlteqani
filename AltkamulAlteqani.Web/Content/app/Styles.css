@@ -1,0 +1,10 @@
+﻿.loading {
+    font-family: Arial;
+    font-size: 10pt;
+    width: 200px;
+    height: 100px;
+    display: none;
+    position: fixed;
+    background-color: White;
+    z-index: 999;
+}

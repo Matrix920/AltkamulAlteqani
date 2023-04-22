@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "BooksWithTypes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Books By Categories</h2>
+
+<div class="loading" align="center">
+    Loading. Please wait.<br />
+    <br />
+    <img src="~/Content/Images/Loader.gif" alt="" />
+</div>
+
+<form id="myForm">
+    <label for="bookTypesDropDown"><b>Book Types</b></label>
+    <select class="form-control" id="bookTypesDropDown" onchange="ChangeBookType()" name="bookTypesDropDown"></select>
+
+    <label for="booksDropDown"><b>Books</b></label>
+    <select class="form-control" id="booksDropDown" name="booksDropDown"></select>
+
+
+</form>
+
+
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            GetBookTypes();
+        });
+
+        function GetBookTypes() {
+            ShowProgress();
+
+            $.ajax({
+                type: 'GET',
+                url: base_url + '/api/BookTypes',
+                dataType: 'json',
+                data: '',
+                success: function (data) {
+                    console.log(data);
+                    var s = '<option value="-1">Select Book Type</option>';
+                    for (var i = 0; i < data.length; i++) {
+                        s += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
+                    }
+                    $("#bookTypesDropDown").html(s);
+                    HideProgress();
+                },
+                error: function (ex) {
+                    HideProgress();
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message");
+                }
+            });
+
+            return false;
+        }
+    </script>
+}
+
+

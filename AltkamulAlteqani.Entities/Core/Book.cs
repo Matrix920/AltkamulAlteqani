@@ -23,6 +23,8 @@ namespace AltkamulAlteqani.Entities.Core
 
         public int AuthorId { get; set; }
 
+        public DateTime PublishDate { get; set; }
+
         public virtual Author Author { get; set; }
         public virtual BookType BookType { get; set; }
     }

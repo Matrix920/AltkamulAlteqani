@@ -115,6 +115,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="TrackableEntities.Common, Version=2.5.0.0, Culture=neutral, PublicKeyToken=b10b51e7b9be6a2e" />
     <Reference Include="Unity.Abstractions, Version=5.11.6.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.Abstractions.5.11.6\lib\net48\Unity.Abstractions.dll</HintPath>
     </Reference>
@@ -157,6 +158,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\BooksController.cs" />
+    <Compile Include="Api\BookTypesController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -166,23 +169,34 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StackOverFlowController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\LibraryDb.mdf" />
+    <Content Include="App_Data\LibraryDb_log.ldf">
+      <DependentUpon>LibraryDb.mdf</DependentUpon>
+    </Content>
+    <Content Include="Content\app\Styles.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.min.css" />
+    <Content Include="Content\Images\altakamul.png" />
+    <Content Include="Content\Images\Loader.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\app\Books.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\datatables.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -207,11 +221,14 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Books\Index.cshtml" />
+    <Content Include="Views\Books\BooksWithTypes.cshtml" />
+    <Content Include="Views\StackOverFlow\Index.cshtml" />
+    <Content Include="Views\StackOverFlow\QuestionDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Books\" />
+    <Folder Include="Views\BookTypes\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -230,6 +247,10 @@
     <ProjectReference Include="..\AltkamulAlteqani.Entities\AltkamulAlteqani.Entities.csproj">
       <Project>{EB1484DB-F569-4621-A455-E10034662213}</Project>
       <Name>AltkamulAlteqani.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AltkamulAlteqani.Invokers\AltkamulAlteqani.Invokers.csproj">
+      <Project>{ABB94444-97E9-45FC-919F-BE6DF8424322}</Project>
+      <Name>AltkamulAlteqani.Invokers</Name>
     </ProjectReference>
     <ProjectReference Include="..\AltkamulAlteqani.Repository\AltkamulAlteqani.Repository.csproj">
       <Project>{3B1FFF8A-7012-4C0C-BD07-FE5C677B2E5D}</Project>
